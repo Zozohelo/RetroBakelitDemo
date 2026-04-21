@@ -19,7 +19,7 @@ const MENU_CATEGORIES = [
     accent: "#f97316",
     items: [
       {
-        name: "Bäcon Cheese",
+        name: "Bacon Cheese",
         price: "4 200 Ft",
         desc: "Buci, házi szósz, saláta, paradicsom, 15 dkg marha pogácsa, cheddar, bäcon, csónak burgonya",
         allergens: { gluten: false, lactose: true, shellfish: false },
@@ -181,7 +181,7 @@ const MENU_CATEGORIES = [
   },
   {
     id: "feltetek",
-    label: "Plusz Feltétek, csipegetni valók",
+    label: "Plusz Feltétek és csipegetni valók",
     accent: "#ec4899",
     items: [
       {
@@ -268,7 +268,7 @@ function AllergenBadge({
 
   return (
     <div
-      className="text-[0.6rem] font-semibold text-neutral-300 px-2 py-1 rounded w-fit"
+      className="text-[0.65rem] font-semibold text-neutral-300 px-2.5 py-1.5 rounded w-fit"
       style={{
         background: `${accent}20`,
         border: `1px solid ${accent}40`,
@@ -288,14 +288,14 @@ export default function MenuSection() {
     switch (categoryId) {
       case "burgerek":
       case "streetfood":
-        return "h-40"; // 10rem - for full descriptions
+        return "h-44"; // Increased from h-40
       case "desszertek":
       case "koretek":
-        return "h-32"; // 8rem - for medium descriptions
+        return "h-36"; // Increased from h-32
       case "feltetek":
-        return "h-24"; // 6rem - for short/no descriptions
+        return "h-28"; // Increased from h-24
       default:
-        return "h-32";
+        return "h-36";
     }
   };
 
@@ -353,7 +353,7 @@ export default function MenuSection() {
               }}
             >
               {/* Header: name and price */}
-              <div className="flex items-start justify-between gap-3 mb-1.5">
+              <div className="flex items-start justify-between gap-3 mb-2">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <div
@@ -375,7 +375,7 @@ export default function MenuSection() {
 
               {/* Description (only show if it has content) */}
               {item.desc && (
-                <p className="text-[0.7rem] leading-relaxed text-neutral-500 pl-3.5 mb-2 flex-1 overflow-hidden line-clamp-3">
+                <p className="text-[0.90rem] leading-relaxed text-neutral-500 pl-3.5 mb-2 flex-1 overflow-hidden line-clamp-3">
                   {item.desc}
                 </p>
               )}

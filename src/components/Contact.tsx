@@ -74,7 +74,7 @@ export default function Contact() {
             <iframe
               className="map-tint block w-full"
               style={{ height: 360 }}
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2691.5530192328224!2d18.889314611971034!3d47.576484571066935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476a76f7684a292d%3A0xda27567c63506af!2sNagykov%C3%A1csi%2C%20Ady%20Endre%20u.%205%2C%202094!5e0!3m2!1shu!2shu!4v1773852309020!5m2!1shu!2shu"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1128.0366245433615!2d18.893597352821555!3d47.57631374869557!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476a76f782dbee61%3A0x6f0b00c2a079f2e2!2sNagykov%C3%A1csi%2C%20Kossuth%20Lajos%20u.%201%2C%202094!5e0!3m2!1shu!2shu!4v1776787821252!5m2!1shu!2shu"
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -88,6 +88,35 @@ export default function Contact() {
                 </span>{" "}
                 — Ady Endre u. 5, Nagykovácski, 2094
               </span>
+            </div>
+          </div>
+
+          {/* Info Box */}
+          <div className="mt-4 bg-orange-500/10 border border-orange-500/30 rounded p-4">
+            <div className="flex gap-3">
+              <div className="flex-shrink-0">
+                <svg
+                  className="w-5 h-5 text-orange-500 mt-0.5"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+              </div>
+              <div>
+                <p className="text-[.75rem] font-semibold text-orange-400 mb-1">
+                  Helyünk
+                </p>
+                <p className="text-[.7rem] text-neutral-300 leading-relaxed">
+                  A Retro &amp; Bakelit a{" "}
+                  <span className="font-semibold">Hód udvar előtt</span>{" "}
+                  található.
+                </p>
+              </div>
             </div>
           </div>
         </Reveal>

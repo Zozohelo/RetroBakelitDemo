@@ -22,7 +22,11 @@ export default function Footer() {
         {/* Right side - Email & Social */}
         <div className="flex items-center gap-4">
           <p className="text-[.7rem] text-neutral-600 hover:text-orange-500 transition-colors">
-            Made by: ZozoDev
+            Várunk szerettetel a Nagykovácsi Retro &amp; Bakelitben! <br />
+            Kérdésed van? Írj nekünk:{" "}
+            <a href="mailto:info@retrobakelit.hu" className="hover:underline">
+              retrobakelit@gmail.com
+            </a>
           </p>
         </div>
       </div>
