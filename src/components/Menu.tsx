@@ -354,8 +354,6 @@ type DrinkTab =
   | "rovidek"
   | "uditok"
   | "pezsgok";
-type Tab = FoodTab | DrinkTab;
-
 function AllergenBadge({
   allergens,
   accent,
