@@ -435,7 +435,7 @@ export default function MenuSection() {
                 : "bg-transparent text-neutral-500 border-neutral-700 hover:text-neutral-200 hover:border-neutral-500"
             }`}
           >
-            🍽️ Ételek
+            Ételek
           </button>
           <button
             onClick={() => setIsFood(false)}
