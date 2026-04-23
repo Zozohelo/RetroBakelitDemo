@@ -86,7 +86,7 @@ export default function Contact() {
                 <span className="text-neutral-200 font-semibold">
                   Retro &amp; Bakelit
                 </span>{" "}
-                — Ady Endre u. 5, Nagykovácski, 2094
+                — Kossuth Lajos u. 1, Nagykovácsi, 2094
               </span>
             </div>
           </div>
@@ -108,10 +108,10 @@ export default function Contact() {
                 </svg>
               </div>
               <div>
-                <p className="text-[.75rem] font-semibold text-orange-400 mb-1">
+                <p className="text-[.99rem] font-semibold text-orange-400 mb-1">
                   Helyünk
                 </p>
-                <p className="text-[.7rem] text-neutral-300 leading-relaxed">
+                <p className="text-[.99rem] text-neutral-300 leading-relaxed">
                   A Retro &amp; Bakelit a{" "}
                   <span className="font-semibold">Hód udvar előtt</span>{" "}
                   található.

@@ -200,7 +200,7 @@ export default function Hero() {
 
           <div className="anim-fade3 w-14 h-px md:mx-0 mx-auto my-6 bg-gradient-to-r from-transparent via-orange-500 to-transparent" />
 
-          <p className="anim-fade3 text-neutral-400 max-w-lg md:mx-0 mx-auto leading-relaxed text-[0.95rem]">
+          <p className="anim-fade3 text-neutral-400 max-w-lg md:mx-0 mx-auto leading-relaxed text-[1.125rem]">
             Modern retró pub — bakelitlemezek, hideg italok, finom ételek és
             zene, ami mindent elmond.
           </p>

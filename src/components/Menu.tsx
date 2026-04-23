@@ -20,23 +20,23 @@ interface DrinkItem {
 const MENU_CATEGORIES = [
   {
     id: "burgerek",
-    label: "🍔 Burgerek",
+    label: "Burgerek",
     accent: "#f97316",
     items: [
       {
-        name: "Bäcon Cheese",
+        name: "Bacon Cheese",
         price: "4 200 Ft",
-        desc: "Buci, házi szósz, saláta, paradicsom, 15 dkg marha pogácsa, cheddar, bäcon, csónak burgonya",
+        desc: "Buci, házi szósz, saláta, paradicsom, 15 dkg marha pogácsa, cheddar, bacon, csónak burgonya",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
         name: "Tanyasi Csirke",
         price: "3 500 Ft",
-        desc: "Buci, házi szósz, saláta, paradicsom, 15 dkg pácolt tanyasi csirke, cheddar, bäcon, csónak burgonya",
+        desc: "Buci, házi szósz, saláta, paradicsom, 15 dkg pácolt tanyasi csirke, cheddar, bacon, csónak burgonya",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
-        name: "Athén",
+        name: "Athen",
         price: "4 900 Ft",
         desc: "Buci, tzatziki, saláta, paradicsom, lilahagyma, uborka, ruccola, olivabogyó, 15 dkg marha pogácsa, 10 dkg grill feta, csónak burgonya",
         allergens: { gluten: false, lactose: true, shellfish: false },
@@ -44,13 +44,13 @@ const MENU_CATEGORIES = [
       {
         name: "Dupla Dinamit",
         price: "5 200 Ft",
-        desc: "Buci, házi öntet, saláta, dupla marhapogácsa (30 dkg), dupla cheddar, dupla bäcon, 4 db rántott hagymakarika, csónak burgonya",
+        desc: "Buci, házi öntet, saláta, dupla marhapogácsa (30 dkg), dupla cheddar, dupla bacon, 4 db rántott hagymakarika, csónak burgonya",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
-        name: "Jalapeño",
+        name: "Jalapeno",
         price: "4 500 Ft",
-        desc: "Buci, házi öntet, saláta, paradicsom, 15 dkg marhapogácsa, cheddar, bäcon, lilahagyma, jalapeño, csónak burgonya",
+        desc: "Buci, házi öntet, saláta, paradicsom, 15 dkg marhapogácsa, cheddar, bacon, lilahagyma, jalapeno, csónak burgonya",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
@@ -75,17 +75,17 @@ const MENU_CATEGORIES = [
   },
   {
     id: "streetfood",
-    label: "🥡 Streetfood",
+    label: "Streetfood",
     accent: "#eab308",
     items: [
       {
-        name: "Bajor Kolbász Tál",
+        name: "Bajor Kolbász Tal",
         price: "4 900 Ft",
         desc: "3 db kolbász, fűszeres csónak burgonya, bajor mustár, 15 dkg coleslaw saláta",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
-        name: "Gyros Tál",
+        name: "Gyros Tal",
         price: "3 990 Ft",
         desc: "18 dkg gyros (csirke), csónak burgonya, saláta, paradicsom, lilahagyma, uborka, tzatziki",
         allergens: { gluten: false, lactose: true, shellfish: false },
@@ -99,7 +99,7 @@ const MENU_CATEGORIES = [
       {
         name: "Tanyasi Csirkemell Steak",
         price: "4 600 Ft",
-        desc: "2×15 dkg csirkemell filé, görög saláta: saláta, paradicsom, lilahagyma, uborka, feta sajt, olivabogyó, olívaolaj",
+        desc: "2x15 dkg csirkemell filé, görög saláta: saláta, paradicsom, lilahagyma, uborka, feta sajt, olivabogyó, olívaolaj",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
@@ -118,7 +118,7 @@ const MENU_CATEGORIES = [
   },
   {
     id: "desszertek",
-    label: "🍮 Desszertek",
+    label: "Desszertek",
     accent: "#a78bfa",
     items: [
       {
@@ -143,7 +143,7 @@ const MENU_CATEGORIES = [
   },
   {
     id: "koretek",
-    label: "🥗 Köretek & Saláták",
+    label: "Koretek & Saláták",
     accent: "#22c55e",
     items: [
       {
@@ -186,7 +186,7 @@ const MENU_CATEGORIES = [
   },
   {
     id: "feltetek",
-    label: "➕ Plusz Feltétek",
+    label: "Plusz Feltétek",
     accent: "#ec4899",
     items: [
       {
@@ -202,7 +202,7 @@ const MENU_CATEGORIES = [
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
-        name: "Bäcon",
+        name: "Bacon",
         price: "600 Ft",
         desc: "",
         allergens: { gluten: false, lactose: false, shellfish: false },
@@ -256,7 +256,7 @@ const MENU_CATEGORIES = [
 const DRINK_CATEGORIES = [
   {
     id: "koktélok",
-    label: "🍹 Koktélok",
+    label: "Koktélok",
     accent: "#06b6d4",
     items: [
       { name: "Aperol Spritz", price: "2 690 Ft" },
@@ -265,7 +265,7 @@ const DRINK_CATEGORIES = [
       { name: "Gin & Tonic", price: "2 490 Ft" },
       { name: "Epres Daiquiri", price: "2 790 Ft" },
       { name: "Sex on the Beach", price: "2 890 Ft" },
-      { name: "Piña Colada", price: "2 790 Ft" },
+      { name: "Pina Colada", price: "2 790 Ft" },
       { name: "Tequila Sunrise", price: "2 890 Ft" },
       { name: "Mojito", price: "2 390 Ft" },
       { name: "Cosmopolitan", price: "2 390 Ft" },
@@ -278,7 +278,7 @@ const DRINK_CATEGORIES = [
   },
   {
     id: "borok",
-    label: "🍷 Borok",
+    label: "Borok",
     accent: "#8b5cf6",
     items: [
       { name: "Juhász Rosé", price: "690 Ft/dl" },
@@ -287,7 +287,7 @@ const DRINK_CATEGORIES = [
   },
   {
     id: "froccsok",
-    label: "🍹 Fröccsök",
+    label: "Fröccsök",
     accent: "#ec4899",
     items: [
       { name: "Kisfröccs", price: "690 Ft" },
@@ -299,7 +299,7 @@ const DRINK_CATEGORIES = [
   },
   {
     id: "rovidek",
-    label: "🥃 Rövidek",
+    label: "Rövidek",
     accent: "#f59e0b",
     items: [
       { name: "Zwack Unicum", price: "1 290 Ft" },
@@ -321,19 +321,43 @@ const DRINK_CATEGORIES = [
     ] as DrinkItem[],
   },
   {
-    id: "uditok",
-    label: "🥤 Üdítők",
-    accent: "#10b981",
+    id: "sorok",
+    label: "Sörök",
+    accent: "#ec7a0d",
     items: [
-      { name: "Limonádé - Klasszikus", price: "1 190 Ft" },
-      { name: "Limonádé - Málnás", price: "1 190 Ft" },
-      { name: "Limonádé - Bodzás", price: "1 190 Ft" },
-      { name: "Limonádé - Mangós", price: "1 190 Ft" },
+      { name: "Arany ászok", price: "990 Ft" },
+      { name: "Pilsner", price: "1190 Ft" },
+      { name: "Dreher hidegkomlós", price: "320 Ft" },
+      { name: "Peroni", price: "1190 Ft" },
+      { name: "Asaki", price: "1190 Ft" },
+      { name: "HB", price: "1490 Ft" },
+      { name: "Dreher 24", price: "900 Ft" },
+      {
+        name: "Dreher Gold (csapolt)",
+        price: "Pohár: 990 Ft | Korsó: 1190 Ft",
+      },
+      {
+        name: "Dreher meggyves (csapolt)",
+        price: "Pohár: 990 Ft | Korsó: 1290 Ft",
+      },
+      { name: "Peroni (csapolt)", price: "Pohár: 1190 Ft | Korsó: 1390 Ft" },
+    ] as DrinkItem[],
+  },
+  {
+    id: "uditok",
+    label: "Üdítők",
+    accent: "#06d084",
+    items: [
+      { name: "Ásványvíz", price: "590 Ft" },
+      { name: "Szénsavas italok", price: "799 Ft" },
+      { name: "Fuze Tea", price: "799 Ft" },
+      { name: "Capy gyümölcslevek", price: "799 Ft" },
+      { name: "Limonádé", price: "1190 Ft" },
     ] as DrinkItem[],
   },
   {
     id: "pezsgok",
-    label: "🍾 Pezsgők",
+    label: "Pezsgők",
     accent: "#f97316",
     items: [
       { name: "Hungaria Extra Dry Pezsgő", price: "6 990 Ft/üveg" },
@@ -352,8 +376,10 @@ type DrinkTab =
   | "borok"
   | "froccsok"
   | "rovidek"
+  | "sorok"
   | "uditok"
   | "pezsgok";
+
 function AllergenBadge({
   allergens,
   accent,
@@ -372,7 +398,7 @@ function AllergenBadge({
 
   return (
     <div
-      className="text-[0.65rem] font-semibold text-neutral-300 px-2.5 py-1.5 rounded w-fit"
+      className="text-[0.80rem] font-semibold text-neutral-300 px-2.5 py-1.5 rounded w-fit"
       style={{
         background: `${accent}20`,
         border: `1px solid ${accent}40`,
@@ -416,7 +442,7 @@ export default function MenuSection() {
     <section id="menu" className="max-w-6xl mx-auto px-6 py-24">
       <Reveal>
         <span className="text-[.62rem] font-bold tracking-[.32em] uppercase text-orange-500 block mb-3">
-          Konyha &amp; Itallap
+          Ételek &amp; Italok
         </span>
         <h2
           className="font-display font-bold text-neutral-50 leading-tight mb-8"
@@ -445,7 +471,7 @@ export default function MenuSection() {
                 : "bg-transparent text-neutral-500 border-neutral-700 hover:text-neutral-200 hover:border-neutral-500"
             }`}
           >
-            🍹 Italok
+            Italok
           </button>
         </div>
 
@@ -516,13 +542,13 @@ export default function MenuSection() {
                         className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-0.5"
                         style={{ background: activeFoodCategory.accent }}
                       />
-                      <p className="font-display font-bold text-neutral-50 text-[0.95rem] leading-tight">
+                      <p className="font-display font-bold text-neutral-50 text-[1.125rem] leading-tight">
                         {item.name}
                       </p>
                     </div>
                   </div>
                   <span
-                    className="font-bold text-[0.85rem] whitespace-nowrap flex-shrink-0"
+                    className="font-bold text-[0.99rem] whitespace-nowrap flex-shrink-0"
                     style={{ color: activeFoodCategory.accent }}
                   >
                     {item.price}
@@ -530,7 +556,7 @@ export default function MenuSection() {
                 </div>
 
                 {item.desc && (
-                  <p className="text-[0.78rem] leading-relaxed text-neutral-500 pl-3.5 mb-2 flex-1 overflow-hidden line-clamp-3">
+                  <p className="text-[0.99rem] leading-relaxed text-neutral-500 pl-3.5 pb-5 mb-1 flex-1 overflow-hidden line-clamp-3">
                     {item.desc}
                   </p>
                 )}
@@ -572,7 +598,7 @@ export default function MenuSection() {
                     className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                     style={{ background: activeDrinkCategory.accent }}
                   />
-                  <p className="font-display font-bold text-neutral-50 text-[0.95rem]">
+                  <p className="font-display font-bold text-neutral-50 text-[1.125rem]">
                     {item.name}
                   </p>
                 </div>
@@ -597,13 +623,6 @@ export default function MenuSection() {
                 Allergének:
               </span>{" "}
               glutén · laktóz · rákfélék
-            </p>
-            <p className="text-[.75rem] text-neutral-500 whitespace-nowrap">
-              A számla végösszege{" "}
-              <span className="text-orange-400 font-semibold">
-                10% szervízdíjat
-              </span>{" "}
-              tartalmaz.
             </p>
           </div>
         </Reveal>
