@@ -556,7 +556,7 @@ export default function MenuSection() {
                 </div>
 
                 {item.desc && (
-                  <p className="text-[0.99rem] leading-relaxed text-neutral-500 pl-3.5 pb-5 mb-1 flex-1 overflow-hidden line-clamp-3">
+                  <p className="text-[0.75rem] leading-relaxed text-neutral-500 pl-3.5 pb-20 mb-1 flex-1 overflow-hidden line-clamp-3">
                     {item.desc}
                   </p>
                 )}
