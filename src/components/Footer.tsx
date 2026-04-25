@@ -16,7 +16,7 @@ export default function Footer() {
 
         {/* Center text */}
         <p className="text-[.7rem] text-neutral-600 tracking-wide text-center">
-          © 2026 · Nagykovácski · Minden jog fenntartva
+          © 2026 · Nagykovácsi · Minden jog fenntartva
         </p>
 
         {/* Right side - Email & Social */}

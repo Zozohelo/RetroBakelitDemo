@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { label: "Rólunk", href: "#about" },
   { label: "Étel/Ital", href: "#menu" },
   { label: "Képek", href: "#gallery" },
-  { label: "Kapcsolat", href: "#contact" },
+  { label: "Elérhetőség", href: "#contact" },
 ];
 
 const COLORS = ["#FF2D78", "#00CFFF", "#A855F7"];
