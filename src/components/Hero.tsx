@@ -123,7 +123,7 @@ function VinylRecord({ size }: { size: number }) {
         textAnchor="middle"
       >
         <textPath href={`#ba-${size}`} startOffset="50%">
-          NAGYKOVÁCSI
+          NAGYKOVÁCSKI
         </textPath>
       </text>
 
@@ -226,6 +226,19 @@ export default function Hero() {
             >
               Hogyan találsz meg?
             </button>
+          </div>
+
+          {/* Reservation Info */}
+          <div className="anim-fade4 mt-10 pt-8 border-t border-neutral-700/50">
+            <p className="text-[0.99rem] text-neutral-400 mb-2">
+              Asztalfoglalás esetén kérjük hívja ezt a telefonszámot:
+            </p>
+            <a
+              href="tel:+36123456789"
+              className="text-[1.1rem] font-bold text-orange-400 hover:text-orange-300 transition-colors"
+            >
+              +36 20 935 9046
+            </a>
           </div>
 
           <div className="flex md:hidden justify-center w-full anim-fade0 order-first pt-8">
