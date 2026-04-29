@@ -1,4 +1,4 @@
-import herobg from "../assets/images/gallery22.jpg";
+import herobg from "../assets/images/gallery22_new.jpg";
 
 const HERO_BG = herobg;
 

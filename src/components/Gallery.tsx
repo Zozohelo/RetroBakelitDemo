@@ -1,22 +1,33 @@
-import gallery1 from "../assets/images/gallery1.jpg";
+import gallery12 from "../assets/images/gallery12.jpg";
 import gallery2 from "../assets/images/gallery2.jpg";
 import gallery3 from "../assets/images/gallery3.jpg";
-import gallery4 from "../assets/images/gallery4.jpg";
+import gallery52 from "../assets/images/gallery52.jpg";
 import gallery6 from "../assets/images/gallery6.jpg";
 import gallery8 from "../assets/images/gallery8.jpg";
 import gallery25 from "../assets/images/gallery25.jpg";
-import gallery40 from "../assets/images/gallery40.jpg";
+import gallery44 from "../assets/images/gallery44.jpg";
+import gallery55 from "../assets/images/gallery55.jpg";
+import gallery56 from "../assets/images/gallery56.jpeg";
+import gallery57 from "../assets/images/gallery57.jpeg";
+import gallery58 from "../assets/images/gallery58.jpeg";
+import gallery59 from "../assets/images/gallery59.jpeg";
+import gallery60 from "../assets/images/gallery60.jpeg";
 import { Reveal } from "./Reveal";
 
 const GALLERY = [
   gallery25,
-  gallery1,
+  gallery12,
   gallery2,
   gallery3,
-  gallery4,
+  gallery52,
   gallery6,
   gallery8,
-  gallery40,
+  gallery44,
+  gallery56,
+  gallery57,
+  gallery58,
+  gallery59,
+  gallery60,
 ];
 
 export default function GallerySection() {
