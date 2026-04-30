@@ -6,7 +6,6 @@ import gallery6 from "../assets/images/gallery6.jpg";
 import gallery8 from "../assets/images/gallery8.jpg";
 import gallery25 from "../assets/images/gallery25.jpg";
 import gallery44 from "../assets/images/gallery44.jpg";
-import gallery55 from "../assets/images/gallery55.jpg";
 import gallery56 from "../assets/images/gallery56.jpeg";
 import gallery57 from "../assets/images/gallery57.jpeg";
 import gallery58 from "../assets/images/gallery58.jpeg";
