@@ -398,7 +398,7 @@ function AllergenBadge({
 
   return (
     <div
-      className="text-[0.80rem] font-semibold text-neutral-300 px-2.5 py-1.5 rounded w-fit"
+      className="text-[0.70rem] md:text-[0.80rem] font-semibold text-neutral-300 px-2 md:px-2.5 py-1 md:py-1.5 rounded w-fit"
       style={{
         background: `${accent}20`,
         border: `1px solid ${accent}40`,
@@ -416,27 +416,6 @@ export default function MenuSection() {
 
   const activeFoodCategory = MENU_CATEGORIES.find((c) => c.id === foodTab)!;
   const activeDrinkCategory = DRINK_CATEGORIES.find((c) => c.id === drinkTab)!;
-
-  const getHeightClass = (categoryId: string, isFood: boolean) => {
-    if (!isFood) {
-      return "h-28";
-    }
-    switch (categoryId) {
-      case "burgerek":
-      case "streetfood":
-        return "h-44";
-      case "desszertek":
-      case "koretek":
-        return "h-36";
-      case "feltetek":
-        return "h-28";
-      default:
-        return "h-36";
-    }
-  };
-
-  const foodHeightClass = getHeightClass(foodTab, true);
-  const drinkHeightClass = getHeightClass(drinkTab, false);
 
   return (
     <section id="menu" className="max-w-6xl mx-auto px-6 py-24">
@@ -523,7 +502,7 @@ export default function MenuSection() {
           {activeFoodCategory.items.map((item, i) => (
             <Reveal key={`${foodTab}-${i}`} delay={i * 40}>
               <div
-                className={`group flex flex-col bg-neutral-900/60 border border-neutral-800 px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 ${foodHeightClass}`}
+                className="group flex flex-col bg-neutral-900/60 border border-neutral-800 px-3 md:px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 min-h-fit"
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor =
                     activeFoodCategory.accent + "44";
@@ -535,35 +514,39 @@ export default function MenuSection() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "";
                 }}
               >
-                <div className="flex items-start justify-between gap-3 mb-2">
+                {/* Header */}
+                <div className="flex items-start justify-between gap-2 md:gap-3 mb-2">
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-start gap-2">
                       <div
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-0.5"
+                        className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5"
                         style={{ background: activeFoodCategory.accent }}
                       />
-                      <p className="font-display font-bold text-neutral-50 text-[1.125rem] leading-tight">
+                      <p className="font-display font-bold text-neutral-50 text-sm md:text-base leading-tight break-words">
                         {item.name}
                       </p>
                     </div>
                   </div>
                   <span
-                    className="font-bold text-[0.99rem] whitespace-nowrap flex-shrink-0"
+                    className="font-bold text-[0.75rem] md:text-[0.85rem] whitespace-nowrap flex-shrink-0 ml-2"
                     style={{ color: activeFoodCategory.accent }}
                   >
                     {item.price}
                   </span>
                 </div>
 
+                {/* Description */}
                 {item.desc && (
-                  <p className="text-[0.75rem] leading-tight md:leading-relaxed text-neutral-500 pl-3.5 mb-2 flex-1 overflow-hidden md:line-clamp-3">
+                  <p className="text-[0.65rem] md:text-[0.75rem] leading-relaxed text-neutral-400 pl-3 mb-3">
                     {item.desc}
                   </p>
                 )}
 
+                {/* Spacer */}
                 <div className="flex-1" />
 
-                <div className="mt-auto pt-1">
+                {/* Allergen Badge */}
+                <div className="mt-2">
                   <AllergenBadge
                     allergens={item.allergens}
                     accent={activeFoodCategory.accent}
@@ -581,7 +564,7 @@ export default function MenuSection() {
           {activeDrinkCategory.items.map((item, i) => (
             <Reveal key={`${drinkTab}-${i}`} delay={i * 40}>
               <div
-                className={`group flex items-center justify-between bg-neutral-900/60 border border-neutral-800 px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 ${drinkHeightClass}`}
+                className="group flex items-center justify-between bg-neutral-900/60 border border-neutral-800 px-3 md:px-4 py-3 transition-all duration-200 hover:-translate-y-0.5"
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.borderColor =
                     activeDrinkCategory.accent + "44";
@@ -593,17 +576,17 @@ export default function MenuSection() {
                   (e.currentTarget as HTMLElement).style.boxShadow = "";
                 }}
               >
-                <div className="flex items-center gap-2 flex-1">
+                <div className="flex items-center gap-2 flex-1 min-w-0">
                   <div
                     className="w-1.5 h-1.5 rounded-full flex-shrink-0"
                     style={{ background: activeDrinkCategory.accent }}
                   />
-                  <p className="font-display font-bold text-neutral-50 text-[1.125rem]">
+                  <p className="font-display font-bold text-neutral-50 text-sm md:text-base break-words">
                     {item.name}
                   </p>
                 </div>
                 <span
-                  className="font-bold text-[0.85rem] whitespace-nowrap flex-shrink-0 ml-4"
+                  className="font-bold text-[0.7rem] md:text-[0.8rem] whitespace-nowrap flex-shrink-0 ml-3"
                   style={{ color: activeDrinkCategory.accent }}
                 >
                   {item.price}
@@ -617,8 +600,8 @@ export default function MenuSection() {
       {/* Allergen box - only show when food is selected */}
       {isFood && (
         <Reveal delay={100}>
-          <div className="mt-10 border border-neutral-800 bg-neutral-900/40 px-5 py-4 flex flex-col sm:flex-row gap-4 sm:items-center justify-between">
-            <p className="text-[.75rem] text-neutral-500 leading-relaxed">
+          <div className="mt-10 border border-neutral-800 bg-neutral-900/40 px-4 md:px-5 py-3 md:py-4 flex flex-col sm:flex-row gap-3 md:gap-4 sm:items-center justify-between">
+            <p className="text-[0.7rem] md:text-[0.75rem] text-neutral-500 leading-relaxed">
               <span className="text-neutral-400 font-semibold">
                 Allergének:
               </span>{" "}
