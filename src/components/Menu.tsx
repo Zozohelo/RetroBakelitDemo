@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Reveal } from "./Reveal";
 
 interface MenuItem {
@@ -22,6 +22,7 @@ const MENU_CATEGORIES = [
     id: "burgerek",
     label: "Burgerek",
     accent: "#f97316",
+    glow: "#f9731640",
     items: [
       {
         name: "Bacon Cheese",
@@ -65,18 +66,13 @@ const MENU_CATEGORIES = [
         desc: "Buci, tzatziki, ruccola, paradicsom, grillezett kecskesajt, gyümölcs chutney, házi szósz, csónak burgonya",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
-      {
-        name: "Surf & Turf Extra",
-        price: "5 900 Ft",
-        desc: "Buci, rákkrémes szósz, ruccola, paradicsom, 15 dkg marhapogácsa, cheddar, 4 db pikáns gamberoni, 4 db rántott tintahalkarika, édesburgonya",
-        allergens: { gluten: false, lactose: true, shellfish: true },
-      },
     ] as MenuItem[],
   },
   {
     id: "streetfood",
     label: "Streetfood",
     accent: "#eab308",
+    glow: "#eab30840",
     items: [
       {
         name: "Bajor Kolbász Tal",
@@ -108,31 +104,14 @@ const MENU_CATEGORIES = [
         desc: "Fűszeres csónak burgonya, kevert saláta, házi szósz, tempura harcsafilé (25 dkg)",
         allergens: { gluten: false, lactose: false, shellfish: true },
       },
-      {
-        name: "Pikáns Gamberoni",
-        price: "5 700 Ft",
-        desc: "6 db gamberoni pikáns raguban, kevert saláta, paradicsom, uborka, ruccola, olívaolaj",
-        allergens: { gluten: false, lactose: false, shellfish: true },
-      },
     ] as MenuItem[],
   },
   {
     id: "desszertek",
     label: "Desszertek",
     accent: "#a78bfa",
+    glow: "#a78bfa40",
     items: [
-      {
-        name: "Profiterol Bianco",
-        price: "1 990 Ft",
-        desc: "2 db / adag",
-        allergens: { gluten: false, lactose: true, shellfish: false },
-      },
-      {
-        name: "Profiterol Pisztácia",
-        price: "1 990 Ft",
-        desc: "2 db / adag",
-        allergens: { gluten: false, lactose: true, shellfish: false },
-      },
       {
         name: "Churros",
         price: "1 990 Ft",
@@ -143,8 +122,9 @@ const MENU_CATEGORIES = [
   },
   {
     id: "koretek",
-    label: "Koretek & Saláták",
+    label: "Köretek & Saláták",
     accent: "#22c55e",
+    glow: "#22c55e40",
     items: [
       {
         name: "Csónak Burgonya",
@@ -182,12 +162,23 @@ const MENU_CATEGORIES = [
         desc: "Görög joghurtos uborka mártás",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
+      {
+        name: "Cézár saláta",
+        price: "2 990 Ft",
+        allergens: { gluten: false, lactose: true, shellfish: false },
+      },
+      {
+        name: "Caprese saláta",
+        price: "2 990 Ft",
+        allergens: { gluten: false, lactose: true, shellfish: false },
+      },
     ] as MenuItem[],
   },
   {
     id: "feltetek",
     label: "Plusz Feltétek",
     accent: "#ec4899",
+    glow: "#ec489940",
     items: [
       {
         name: "Feta sajt",
@@ -202,8 +193,8 @@ const MENU_CATEGORIES = [
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
-        name: "Bacon",
-        price: "600 Ft",
+        name: "Tonhal",
+        price: "990 Ft",
         desc: "",
         allergens: { gluten: false, lactose: false, shellfish: false },
       },
@@ -231,12 +222,7 @@ const MENU_CATEGORIES = [
         desc: "",
         allergens: { gluten: true, lactose: false, shellfish: false },
       },
-      {
-        name: "Rántott tintahalkarika",
-        price: "1 400 Ft",
-        desc: "",
-        allergens: { gluten: true, lactose: false, shellfish: true },
-      },
+
       {
         name: "Grill kecskesajt",
         price: "1 650 Ft",
@@ -258,6 +244,7 @@ const DRINK_CATEGORIES = [
     id: "koktélok",
     label: "Koktélok",
     accent: "#06b6d4",
+    glow: "#06b6d440",
     items: [
       { name: "Aperol Spritz", price: "2 690 Ft" },
       { name: "Limoncello Spritz", price: "2 690 Ft" },
@@ -280,6 +267,7 @@ const DRINK_CATEGORIES = [
     id: "borok",
     label: "Borok",
     accent: "#8b5cf6",
+    glow: "#8b5cf640",
     items: [
       { name: "Juhász Rosé", price: "690 Ft/dl" },
       { name: "Juhász Irsai Olivér", price: "690 Ft/dl" },
@@ -289,6 +277,7 @@ const DRINK_CATEGORIES = [
     id: "froccsok",
     label: "Fröccsök",
     accent: "#ec4899",
+    glow: "#ec489940",
     items: [
       { name: "Kisfröccs", price: "690 Ft" },
       { name: "Nagyfröccs", price: "1 290 Ft" },
@@ -301,6 +290,7 @@ const DRINK_CATEGORIES = [
     id: "rovidek",
     label: "Rövidek",
     accent: "#f59e0b",
+    glow: "#f59e0b40",
     items: [
       { name: "Zwack Unicum", price: "1 290 Ft" },
       { name: "Unicum Szilva", price: "1 390 Ft" },
@@ -324,6 +314,7 @@ const DRINK_CATEGORIES = [
     id: "sorok",
     label: "Sörök",
     accent: "#ec7a0d",
+    glow: "#ec7a0d40",
     items: [
       { name: "Arany ászok", price: "990 Ft" },
       { name: "Pilsner", price: "1190 Ft" },
@@ -347,6 +338,7 @@ const DRINK_CATEGORIES = [
     id: "uditok",
     label: "Üdítők",
     accent: "#06d084",
+    glow: "#06d08440",
     items: [
       { name: "Ásványvíz", price: "590 Ft" },
       { name: "Szénsavas italok", price: "799 Ft" },
@@ -359,6 +351,7 @@ const DRINK_CATEGORIES = [
     id: "pezsgok",
     label: "Pezsgők",
     accent: "#f97316",
+    glow: "#f9731640",
     items: [
       { name: "Hungaria Extra Dry Pezsgő", price: "6 990 Ft/üveg" },
     ] as DrinkItem[],
@@ -380,35 +373,312 @@ type DrinkTab =
   | "uditok"
   | "pezsgok";
 
-function AllergenBadge({
+/* ─── Animated Number ─── */
+function AnimatedPrice({ price, color }: { price: string; color: string }) {
+  return (
+    <span
+      className="font-mono font-black text-base md:text-lg tabular-nums tracking-tight"
+      style={{ color }}
+    >
+      {price}
+    </span>
+  );
+}
+
+/* ─── Allergen Tag ─── */
+function AllergenTag({
   allergens,
   accent,
 }: {
   allergens: { gluten: boolean; lactose: boolean; shellfish: boolean };
   accent: string;
 }) {
-  if (!allergens.gluten && !allergens.lactose && !allergens.shellfish) {
-    return null;
-  }
-
-  const items: string[] = [];
-  if (allergens.gluten) items.push("glutén");
-  if (allergens.lactose) items.push("laktóz");
-  if (allergens.shellfish) items.push("rákfélék");
-
+  const tags: string[] = [];
+  if (allergens.gluten) tags.push("glutén");
+  if (allergens.lactose) tags.push("laktóz");
+  if (allergens.shellfish) tags.push("rákfélék");
+  if (!tags.length) return null;
   return (
-    <div
-      className="text-[0.70rem] md:text-[0.80rem] font-semibold text-neutral-300 px-2 md:px-2.5 py-1 md:py-1.5 rounded w-fit"
-      style={{
-        background: `${accent}20`,
-        border: `1px solid ${accent}40`,
-      }}
-    >
-      Tartalmaz: <span style={{ color: accent }}>{items.join(", ")}</span>
+    <div className="flex gap-1.5 flex-wrap mt-3">
+      {tags.map((t) => (
+        <span
+          key={t}
+          className="text-[0.6rem] font-bold uppercase tracking-widest px-2 py-0.5"
+          style={{
+            color: accent,
+            border: `1px solid ${accent}55`,
+            background: `${accent}12`,
+          }}
+        >
+          {t}
+        </span>
+      ))}
     </div>
   );
 }
 
+/* ─── Food Card — horizontal flip reveal ─── */
+function FoodCard({
+  item,
+  accent,
+  glow,
+  index,
+}: {
+  item: MenuItem;
+  accent: string;
+  glow: string;
+  index: number;
+}) {
+  const [hovered, setHovered] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), index * 60);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [index]);
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative overflow-hidden cursor-default"
+      style={{
+        transform: visible
+          ? "translateY(0) rotateX(0deg)"
+          : "translateY(40px) rotateX(12deg)",
+        opacity: visible ? 1 : 0,
+        transition: `transform 0.55s cubic-bezier(.22,1,.36,1) ${index * 0.04}s, opacity 0.45s ease ${index * 0.04}s`,
+        perspective: "800px",
+        transformStyle: "preserve-3d",
+      }}
+    >
+      {/* Animated border glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          border: `1px solid ${accent}`,
+          opacity: hovered ? 0.7 : 0.18,
+          transition: "opacity 0.3s ease",
+        }}
+      />
+
+      {/* Scan line on hover */}
+      <div
+        className="absolute left-0 right-0 h-px pointer-events-none"
+        style={{
+          background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
+          top: 0,
+          opacity: hovered ? 1 : 0,
+          transform: hovered ? "translateY(100%)" : "translateY(0)",
+          transition: hovered
+            ? "transform 0.6s ease, opacity 0.2s"
+            : "opacity 0.3s",
+          animation: hovered ? "scanline 0.6s ease forwards" : "none",
+        }}
+      />
+
+      <div
+        className="relative flex flex-col h-full bg-neutral-950 p-4 md:p-5"
+        style={{
+          background: hovered
+            ? `linear-gradient(135deg, ${glow} 0%, #0a0a0a 60%)`
+            : "#0a0a0a",
+          transition: "background 0.4s ease",
+          boxShadow: hovered
+            ? `0 0 40px ${glow}, inset 0 0 20px ${glow}`
+            : "none",
+        }}
+      >
+        {/* Top row */}
+        <div className="flex items-start justify-between gap-3 mb-2">
+          {/* Index number */}
+          <span
+            className="text-[0.6rem] font-black font-mono tabular-nums leading-none mt-1 flex-shrink-0"
+            style={{ color: `${accent}60` }}
+          >
+            {String(index + 1).padStart(2, "0")}
+          </span>
+
+          {/* Name */}
+          <div className="flex-1 min-w-0">
+            <h3
+              className="font-black text-sm md:text-base leading-tight text-neutral-50 uppercase tracking-wide"
+              style={{
+                textShadow: hovered ? `0 0 20px ${accent}80` : "none",
+                transition: "text-shadow 0.3s ease",
+              }}
+            >
+              {item.name}
+            </h3>
+          </div>
+
+          {/* Price */}
+          <div className="flex-shrink-0">
+            <AnimatedPrice price={item.price} color={accent} />
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div
+          className="h-px mb-3 w-full"
+          style={{
+            background: `linear-gradient(90deg, ${accent}80, transparent)`,
+            opacity: hovered ? 1 : 0.3,
+            transition: "opacity 0.3s, width 0.4s",
+          }}
+        />
+
+        {/* Description */}
+        {item.desc && (
+          <p
+            className="text-[0.7rem] md:text-[0.75rem] leading-relaxed flex-1"
+            style={{
+              color: hovered ? "#d4d4d4" : "#737373",
+              transition: "color 0.3s ease",
+            }}
+          >
+            {item.desc}
+          </p>
+        )}
+
+        {/* Allergens */}
+        <AllergenTag allergens={item.allergens} accent={accent} />
+
+        {/* Corner accent */}
+        <div
+          className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none"
+          style={{
+            borderTop: `1px solid ${accent}`,
+            borderLeft: `1px solid ${accent}`,
+            transform: "rotate(180deg)",
+            opacity: hovered ? 0.8 : 0.2,
+            transition: "opacity 0.3s",
+          }}
+        />
+        <div
+          className="absolute top-0 left-0 w-8 h-8 pointer-events-none"
+          style={{
+            borderBottom: `1px solid ${accent}`,
+            borderRight: `1px solid ${accent}`,
+            transform: "rotate(180deg)",
+            opacity: hovered ? 0.8 : 0.2,
+            transition: "opacity 0.3s",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* ─── Drink Row ─── */
+function DrinkRow({
+  item,
+  accent,
+  glow,
+  index,
+}: {
+  item: DrinkItem;
+  accent: string;
+  glow: string;
+  index: number;
+}) {
+  const [hovered, setHovered] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), index * 40);
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.1 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, [index]);
+
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative flex items-center gap-3 px-4 py-3 cursor-default overflow-hidden"
+      style={{
+        transform: visible ? "translateX(0)" : "translateX(-24px)",
+        opacity: visible ? 1 : 0,
+        transition: `transform 0.45s cubic-bezier(.22,1,.36,1) ${index * 0.03}s, opacity 0.35s ease ${index * 0.03}s, background 0.2s, border-color 0.2s`,
+        background: hovered ? `${glow}` : "transparent",
+        borderLeft: `2px solid ${hovered ? accent : accent + "30"}`,
+      }}
+    >
+      <div
+        className="w-1 h-1 rounded-full flex-shrink-0"
+        style={{
+          background: accent,
+          boxShadow: hovered ? `0 0 8px ${accent}` : "none",
+        }}
+      />
+      <span
+        className="flex-1 font-semibold text-sm"
+        style={{
+          color: hovered ? "#fafafa" : "#a3a3a3",
+          transition: "color 0.2s",
+        }}
+      >
+        {item.name}
+      </span>
+      <AnimatedPrice price={item.price} color={accent} />
+    </div>
+  );
+}
+
+/* ─── Category Tab Button ─── */
+function TabButton({
+  label,
+  accent,
+  active,
+  onClick,
+}: {
+  label: string;
+  accent: string;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className="relative px-4 py-2 text-[0.7rem] font-black uppercase tracking-widest transition-all duration-200 overflow-hidden"
+      style={{
+        color: active ? "#0a0a0a" : "#525252",
+        background: active ? accent : "transparent",
+        border: `1px solid ${active ? accent : "#404040"}`,
+        boxShadow: active ? `0 0 20px ${accent}60` : "none",
+      }}
+    >
+      {label}
+    </button>
+  );
+}
+
+/* ─── Main Export ─── */
 export default function MenuSection() {
   const [foodTab, setFoodTab] = useState<FoodTab>("burgerek");
   const [drinkTab, setDrinkTab] = useState<DrinkTab>("koktélok");
@@ -418,198 +688,140 @@ export default function MenuSection() {
   const activeDrinkCategory = DRINK_CATEGORIES.find((c) => c.id === drinkTab)!;
 
   return (
-    <section id="menu" className="max-w-6xl mx-auto px-6 py-24">
-      <Reveal>
-        <span className="text-[.62rem] font-bold tracking-[.32em] uppercase text-orange-500 block mb-3">
-          Ételek &amp; Italok
-        </span>
-        <h2
-          className="font-display font-bold text-neutral-50 leading-tight mb-8"
-          style={{ fontSize: "clamp(2rem,4.5vw,3.2rem)" }}
-        >
-          Az <em className="not-italic grad-text">teljes kínálatunk</em>
-        </h2>
+    <>
+      <style>{`
+        @keyframes scanline {
+          from { transform: translateY(0); opacity: 1; }
+          to { transform: translateY(6000%); opacity: 0.3; }
+        }
+        @keyframes flicker {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.85; }
+        }
+      `}</style>
 
-        {/* Food / Drink Toggle */}
-        <div className="flex gap-2 mb-10">
-          <button
-            onClick={() => setIsFood(true)}
-            className={`text-[.72rem] font-bold tracking-[.12em] uppercase px-6 py-2 border transition-all duration-200 ${
-              isFood
-                ? "text-neutral-950 border-transparent bg-orange-500"
-                : "bg-transparent text-neutral-500 border-neutral-700 hover:text-neutral-200 hover:border-neutral-500"
-            }`}
+      <section id="menu" className="max-w-6xl mx-auto px-6 py-24">
+        <Reveal>
+          <span className="text-[.62rem] font-bold tracking-[.32em] uppercase text-orange-500 block mb-3">
+            Ételek &amp; Italok
+          </span>
+          <h2
+            className="font-display font-bold text-neutral-50 leading-tight mb-10"
+            style={{ fontSize: "clamp(2rem,4.5vw,3.2rem)" }}
           >
-            Ételek
-          </button>
-          <button
-            onClick={() => setIsFood(false)}
-            className={`text-[.72rem] font-bold tracking-[.12em] uppercase px-6 py-2 border transition-all duration-200 ${
-              !isFood
-                ? "text-neutral-950 border-transparent bg-blue-500"
-                : "bg-transparent text-neutral-500 border-neutral-700 hover:text-neutral-200 hover:border-neutral-500"
-            }`}
-          >
-            Italok
-          </button>
-        </div>
+            Az <em className="not-italic grad-text">teljes kínálatunk</em>
+          </h2>
 
-        {/* Category tabs */}
-        <div className="flex flex-wrap gap-2 mb-10">
-          {isFood
-            ? MENU_CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setFoodTab(cat.id as FoodTab)}
-                  className={`text-[.72rem] font-bold tracking-[.12em] uppercase px-4 py-2 border transition-all duration-200 ${
-                    foodTab === cat.id
-                      ? "text-neutral-950 border-transparent"
-                      : "bg-transparent text-neutral-500 border-neutral-700 hover:text-neutral-200 hover:border-neutral-500"
-                  }`}
-                  style={
-                    foodTab === cat.id
-                      ? { background: cat.accent, borderColor: cat.accent }
-                      : {}
-                  }
-                >
-                  {cat.label}
-                </button>
-              ))
-            : DRINK_CATEGORIES.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setDrinkTab(cat.id as DrinkTab)}
-                  className={`text-[.72rem] font-bold tracking-[.12em] uppercase px-4 py-2 border transition-all duration-200 ${
-                    drinkTab === cat.id
-                      ? "text-neutral-950 border-transparent"
-                      : "bg-transparent text-neutral-500 border-neutral-700 hover:text-neutral-200 hover:border-neutral-500"
-                  }`}
-                  style={
-                    drinkTab === cat.id
-                      ? { background: cat.accent, borderColor: cat.accent }
-                      : {}
-                  }
-                >
-                  {cat.label}
-                </button>
-              ))}
-        </div>
-      </Reveal>
+          {/* Food / Drink Toggle */}
+          <div className="flex gap-2 mb-8">
+            <button
+              onClick={() => setIsFood(true)}
+              className="text-[.72rem] font-black tracking-[.14em] uppercase px-7 py-2.5 transition-all duration-200 relative overflow-hidden"
+              style={{
+                color: isFood ? "#0a0a0a" : "#525252",
+                background: isFood ? "#f97316" : "transparent",
+                border: `1px solid ${isFood ? "#f97316" : "#404040"}`,
+                boxShadow: isFood ? "0 0 28px #f9731660" : "none",
+              }}
+            >
+              Ételek
+            </button>
+            <button
+              onClick={() => setIsFood(false)}
+              className="text-[.72rem] font-black tracking-[.14em] uppercase px-7 py-2.5 transition-all duration-200"
+              style={{
+                color: !isFood ? "#0a0a0a" : "#525252",
+                background: !isFood ? "#06b6d4" : "transparent",
+                border: `1px solid ${!isFood ? "#06b6d4" : "#404040"}`,
+                boxShadow: !isFood ? "0 0 28px #06b6d460" : "none",
+              }}
+            >
+              Italok
+            </button>
+          </div>
 
-      {/* Food Items */}
-      {isFood && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {activeFoodCategory.items.map((item, i) => (
-            <Reveal key={`${foodTab}-${i}`} delay={i * 40}>
-              <div
-                className="group flex flex-col bg-neutral-900/60 border border-neutral-800 px-3 md:px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 min-h-fit"
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    activeFoodCategory.accent + "44";
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    `0 6px 24px ${activeFoodCategory.accent}12`;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "";
-                }}
-              >
-                {/* Header */}
-                <div className="flex items-start justify-between gap-2 md:gap-3 mb-2">
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-start gap-2">
-                      <div
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0 mt-1.5"
-                        style={{ background: activeFoodCategory.accent }}
-                      />
-                      <p className="font-display font-bold text-neutral-50 text-sm md:text-base leading-tight break-words">
-                        {item.name}
-                      </p>
-                    </div>
-                  </div>
-                  <span
-                    className="font-bold text-[0.75rem] md:text-[0.85rem] whitespace-nowrap flex-shrink-0 ml-2"
-                    style={{ color: activeFoodCategory.accent }}
-                  >
-                    {item.price}
-                  </span>
-                </div>
-
-                {/* Description */}
-                {item.desc && (
-                  <p className="text-[0.65rem] md:text-[0.75rem] leading-relaxed text-neutral-400 pl-3 mb-3">
-                    {item.desc}
-                  </p>
-                )}
-
-                {/* Spacer */}
-                <div className="flex-1" />
-
-                {/* Allergen Badge */}
-                <div className="mt-2">
-                  <AllergenBadge
-                    allergens={item.allergens}
-                    accent={activeFoodCategory.accent}
+          {/* Category tabs */}
+          <div className="flex flex-wrap gap-2 mb-8">
+            {isFood
+              ? MENU_CATEGORIES.map((cat) => (
+                  <TabButton
+                    key={cat.id}
+                    label={cat.label}
+                    accent={cat.accent}
+                    active={foodTab === cat.id}
+                    onClick={() => setFoodTab(cat.id as FoodTab)}
                   />
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      )}
-
-      {/* Drink Items */}
-      {!isFood && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-          {activeDrinkCategory.items.map((item, i) => (
-            <Reveal key={`${drinkTab}-${i}`} delay={i * 40}>
-              <div
-                className="group flex items-center justify-between bg-neutral-900/60 border border-neutral-800 px-3 md:px-4 py-3 transition-all duration-200 hover:-translate-y-0.5"
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    activeDrinkCategory.accent + "44";
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    `0 6px 24px ${activeDrinkCategory.accent}12`;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "";
-                  (e.currentTarget as HTMLElement).style.boxShadow = "";
-                }}
-              >
-                <div className="flex items-center gap-2 flex-1 min-w-0">
-                  <div
-                    className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: activeDrinkCategory.accent }}
+                ))
+              : DRINK_CATEGORIES.map((cat) => (
+                  <TabButton
+                    key={cat.id}
+                    label={cat.label}
+                    accent={cat.accent}
+                    active={drinkTab === cat.id}
+                    onClick={() => setDrinkTab(cat.id as DrinkTab)}
                   />
-                  <p className="font-display font-bold text-neutral-50 text-sm md:text-base break-words">
-                    {item.name}
-                  </p>
-                </div>
-                <span
-                  className="font-bold text-[0.7rem] md:text-[0.8rem] whitespace-nowrap flex-shrink-0 ml-3"
-                  style={{ color: activeDrinkCategory.accent }}
-                >
-                  {item.price}
-                </span>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      )}
-
-      {/* Allergen box - only show when food is selected */}
-      {isFood && (
-        <Reveal delay={100}>
-          <div className="mt-10 border border-neutral-800 bg-neutral-900/40 px-4 md:px-5 py-3 md:py-4 flex flex-col sm:flex-row gap-3 md:gap-4 sm:items-center justify-between">
-            <p className="text-[0.7rem] md:text-[0.75rem] text-neutral-500 leading-relaxed">
-              <span className="text-neutral-400 font-semibold">
-                Allergének:
-              </span>{" "}
-              glutén · laktóz · rákfélék
-            </p>
+                ))}
           </div>
         </Reveal>
-      )}
-    </section>
+
+        {/* Food Items — masonry-like grid */}
+        {isFood && (
+          <div
+            className="grid grid-cols-1 md:grid-cols-2 gap-px"
+            style={{ background: `${activeFoodCategory.accent}18` }}
+            key={foodTab}
+          >
+            {activeFoodCategory.items.map((item, i) => (
+              <FoodCard
+                key={`${foodTab}-${i}`}
+                item={item}
+                accent={activeFoodCategory.accent}
+                glow={activeFoodCategory.glow}
+                index={i}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Drink Items */}
+        {!isFood && (
+          <div
+            className="divide-y"
+            style={{ borderColor: `${activeDrinkCategory.accent}20` }}
+            key={drinkTab}
+          >
+            {activeDrinkCategory.items.map((item, i) => (
+              <DrinkRow
+                key={`${drinkTab}-${i}`}
+                item={item}
+                accent={activeDrinkCategory.accent}
+                glow={activeDrinkCategory.glow}
+                index={i}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Allergen info */}
+        {isFood && (
+          <Reveal delay={100}>
+            <div
+              className="mt-8 px-4 py-3 flex flex-col sm:flex-row gap-3 sm:items-center justify-between"
+              style={{
+                border: `1px solid ${activeFoodCategory.accent}25`,
+                background: `${activeFoodCategory.glow}`,
+              }}
+            >
+              <p className="text-[0.7rem] text-neutral-500 leading-relaxed">
+                <span className="text-neutral-400 font-semibold">
+                  Allergének:
+                </span>{" "}
+                glutén · laktóz · rákfélék
+              </p>
+            </div>
+          </Reveal>
+        )}
+      </section>
+    </>
   );
 }

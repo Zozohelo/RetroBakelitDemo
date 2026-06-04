@@ -11,6 +11,8 @@ import gallery57 from "../assets/images/gallery57.jpeg";
 import gallery58 from "../assets/images/gallery58.jpeg";
 import gallery59 from "../assets/images/gallery59.jpeg";
 import gallery60 from "../assets/images/gallery60.jpeg";
+import galerry62 from "../assets/images/gallery62.jpg";
+import galery63 from "../assets/images/gallery63.jpg";
 import { Reveal } from "./Reveal";
 
 const GALLERY = [
@@ -27,6 +29,8 @@ const GALLERY = [
   gallery58,
   gallery59,
   gallery60,
+  galerry62,
+  galery63,
 ];
 
 export default function GallerySection() {
