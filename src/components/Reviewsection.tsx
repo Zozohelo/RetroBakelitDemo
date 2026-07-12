@@ -40,7 +40,7 @@ const GLOW = "#f9731640";
 
 function StarRow() {
   return (
-    <div className="flex gap-1">
+    <div className="flex gap-2">
       {[...Array(5)].map((_, i) => (
         <svg
           key={i}
