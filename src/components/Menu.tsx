@@ -165,11 +165,13 @@ const MENU_CATEGORIES = [
       {
         name: "Cézár saláta",
         price: "2 990 Ft",
+        desc: "",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
       {
         name: "Caprese saláta",
         price: "2 990 Ft",
+        desc: "",
         allergens: { gluten: false, lactose: true, shellfish: false },
       },
     ] as MenuItem[],
@@ -222,7 +224,6 @@ const MENU_CATEGORIES = [
         desc: "",
         allergens: { gluten: true, lactose: false, shellfish: false },
       },
-
       {
         name: "Grill kecskesajt",
         price: "1 650 Ft",
@@ -373,7 +374,6 @@ type DrinkTab =
   | "uditok"
   | "pezsgok";
 
-/* ─── Animated Number ─── */
 function AnimatedPrice({ price, color }: { price: string; color: string }) {
   return (
     <span
@@ -385,7 +385,6 @@ function AnimatedPrice({ price, color }: { price: string; color: string }) {
   );
 }
 
-/* ─── Allergen Tag ─── */
 function AllergenTag({
   allergens,
   accent,
@@ -417,7 +416,6 @@ function AllergenTag({
   );
 }
 
-/* ─── Food Card — horizontal flip reveal ─── */
 function FoodCard({
   item,
   accent,
@@ -465,7 +463,6 @@ function FoodCard({
         transformStyle: "preserve-3d",
       }}
     >
-      {/* Animated border glow */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -474,18 +471,12 @@ function FoodCard({
           transition: "opacity 0.3s ease",
         }}
       />
-
-      {/* Scan line on hover */}
       <div
         className="absolute left-0 right-0 h-px pointer-events-none"
         style={{
           background: `linear-gradient(90deg, transparent, ${accent}, transparent)`,
           top: 0,
           opacity: hovered ? 1 : 0,
-          transform: hovered ? "translateY(100%)" : "translateY(0)",
-          transition: hovered
-            ? "transform 0.6s ease, opacity 0.2s"
-            : "opacity 0.3s",
           animation: hovered ? "scanline 0.6s ease forwards" : "none",
         }}
       />
@@ -502,17 +493,13 @@ function FoodCard({
             : "none",
         }}
       >
-        {/* Top row */}
         <div className="flex items-start justify-between gap-3 mb-2">
-          {/* Index number */}
           <span
             className="text-[0.6rem] font-black font-mono tabular-nums leading-none mt-1 flex-shrink-0"
             style={{ color: `${accent}60` }}
           >
             {String(index + 1).padStart(2, "0")}
           </span>
-
-          {/* Name */}
           <div className="flex-1 min-w-0">
             <h3
               className="font-black text-sm md:text-base leading-tight text-neutral-50 uppercase tracking-wide"
@@ -524,24 +511,18 @@ function FoodCard({
               {item.name}
             </h3>
           </div>
-
-          {/* Price */}
           <div className="flex-shrink-0">
             <AnimatedPrice price={item.price} color={accent} />
           </div>
         </div>
-
-        {/* Divider */}
         <div
           className="h-px mb-3 w-full"
           style={{
             background: `linear-gradient(90deg, ${accent}80, transparent)`,
             opacity: hovered ? 1 : 0.3,
-            transition: "opacity 0.3s, width 0.4s",
+            transition: "opacity 0.3s",
           }}
         />
-
-        {/* Description */}
         {item.desc && (
           <p
             className="text-[0.7rem] md:text-[0.75rem] leading-relaxed flex-1"
@@ -553,11 +534,7 @@ function FoodCard({
             {item.desc}
           </p>
         )}
-
-        {/* Allergens */}
         <AllergenTag allergens={item.allergens} accent={accent} />
-
-        {/* Corner accent */}
         <div
           className="absolute bottom-0 right-0 w-8 h-8 pointer-events-none"
           style={{
@@ -583,7 +560,6 @@ function FoodCard({
   );
 }
 
-/* ─── Drink Row ─── */
 function DrinkRow({
   item,
   accent,
@@ -650,7 +626,6 @@ function DrinkRow({
   );
 }
 
-/* ─── Category Tab Button ─── */
 function TabButton({
   label,
   accent,
@@ -678,7 +653,6 @@ function TabButton({
   );
 }
 
-/* ─── Main Export ─── */
 export default function MenuSection() {
   const [foodTab, setFoodTab] = useState<FoodTab>("burgerek");
   const [drinkTab, setDrinkTab] = useState<DrinkTab>("koktélok");
@@ -698,6 +672,10 @@ export default function MenuSection() {
           0%, 100% { opacity: 1; }
           50% { opacity: 0.85; }
         }
+        @keyframes pulse-dot {
+          0%, 100% { opacity: 1; box-shadow: 0 0 6px #fb923c; }
+          50% { opacity: 0.5; box-shadow: 0 0 12px #fb923c; }
+        }
       `}</style>
 
       <section id="menu" className="max-w-6xl mx-auto px-6 py-24">
@@ -712,7 +690,6 @@ export default function MenuSection() {
             Az <em className="not-italic grad-text">teljes kínálatunk</em>
           </h2>
 
-          {/* Food / Drink Toggle */}
           <div className="flex gap-2 mb-8">
             <button
               onClick={() => setIsFood(true)}
@@ -740,7 +717,6 @@ export default function MenuSection() {
             </button>
           </div>
 
-          {/* Category tabs */}
           <div className="flex flex-wrap gap-2 mb-8">
             {isFood
               ? MENU_CATEGORIES.map((cat) => (
@@ -764,7 +740,6 @@ export default function MenuSection() {
           </div>
         </Reveal>
 
-        {/* Food Items — masonry-like grid */}
         {isFood && (
           <div
             className="grid grid-cols-1 md:grid-cols-2 gap-px"
@@ -783,7 +758,6 @@ export default function MenuSection() {
           </div>
         )}
 
-        {/* Drink Items */}
         {!isFood && (
           <div
             className="divide-y"
@@ -802,7 +776,6 @@ export default function MenuSection() {
           </div>
         )}
 
-        {/* Allergen info */}
         {isFood && (
           <Reveal delay={100}>
             <div
@@ -821,6 +794,123 @@ export default function MenuSection() {
             </div>
           </Reveal>
         )}
+
+        {/* Weekly specials promo */}
+        <Reveal delay={140}>
+          <div
+            className="relative mt-10 overflow-hidden"
+            style={{
+              border: "1px solid rgba(249,115,22,0.35)",
+              background:
+                "linear-gradient(135deg, rgba(249,115,22,0.07) 0%, #0a0a0a 60%)",
+              boxShadow: "0 0 40px rgba(249,115,22,0.07)",
+            }}
+          >
+            {/* Corner TL */}
+            <div
+              className="absolute top-0 left-0 w-5 h-5 pointer-events-none"
+              style={{
+                borderBottom: "1px solid rgba(249,115,22,0.6)",
+                borderRight: "1px solid rgba(249,115,22,0.6)",
+                transform: "rotate(180deg)",
+              }}
+            />
+            {/* Corner BR */}
+            <div
+              className="absolute bottom-0 right-0 w-5 h-5 pointer-events-none"
+              style={{
+                borderTop: "1px solid rgba(249,115,22,0.6)",
+                borderLeft: "1px solid rgba(249,115,22,0.6)",
+                transform: "rotate(180deg)",
+              }}
+            />
+
+            {/* Pulsing dot + label */}
+            <div className="absolute top-4 right-4 flex items-center gap-1.5">
+              <span
+                className="w-1.5 h-1.5 rounded-full bg-orange-400"
+                style={{ animation: "pulse-dot 2s infinite" }}
+              />
+              <span className="text-[0.55rem] font-black uppercase tracking-[.22em] text-orange-500/60">
+                Heti friss
+              </span>
+            </div>
+
+            <div className="px-6 py-6 flex flex-col sm:flex-row items-start sm:items-center gap-5">
+              {/* Icon box */}
+              <div
+                className="flex-shrink-0 w-12 h-12 flex items-center justify-center"
+                style={{
+                  background: "rgba(249,115,22,0.12)",
+                  border: "1px solid rgba(249,115,22,0.30)",
+                }}
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#f97316"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+                  <path d="M9 16l2 2 4-4" />
+                </svg>
+              </div>
+
+              {/* Text */}
+              <div className="flex-1 min-w-0">
+                <p className="font-black text-sm md:text-base uppercase tracking-wide text-neutral-100 mb-1">
+                  Heti ajánlataink — mindig valami új vár rád
+                </p>
+                <p className="text-[0.78rem] text-neutral-400 leading-relaxed max-w-xl">
+                  Minden héten friss hétköznapi és hétvégi finomságokkal
+                  készülünk. Nézd meg aktuális különleges ajánlatainkat Facebook
+                  oldalunkon!
+                </p>
+              </div>
+
+              {/* CTA button */}
+              <a
+                href="https://www.facebook.com/profile.php?id=61582215309925"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 text-[0.68rem] font-black uppercase tracking-widest transition-all duration-200"
+                style={{
+                  color: "#0a0a0a",
+                  background: "#f97316",
+                  border: "1px solid #f97316",
+                  boxShadow: "0 0 20px rgba(249,115,22,0.40)",
+                  whiteSpace: "nowrap",
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLAnchorElement;
+                  el.style.background = "#fb923c";
+                  el.style.boxShadow = "0 0 28px rgba(249,115,22,0.65)";
+                  el.style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLAnchorElement;
+                  el.style.background = "#f97316";
+                  el.style.boxShadow = "0 0 20px rgba(249,115,22,0.40)";
+                  el.style.transform = "translateY(0)";
+                }}
+              >
+                <svg
+                  width="13"
+                  height="13"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+                Facebook oldal
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </section>
     </>
   );

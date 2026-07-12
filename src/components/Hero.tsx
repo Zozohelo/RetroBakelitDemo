@@ -228,18 +228,140 @@ export default function Hero() {
             </button>
           </div>
 
-          {/* Reservation Info */}
-          <div className="anim-fade4 mt-10 pt-8 border-t border-neutral-700/50">
-            <p className="text-[0.99rem] text-neutral-400 mb-2">
-              Asztalfoglalás esetén kérjük hívja ezt a telefonszámot:
-            </p>
-            <a
-              href="tel:+36123456789"
-              className="text-[1.1rem] font-bold text-orange-400 hover:text-orange-300 transition-colors"
+          {/* Info cards — reservation + delivery */}
+          <div className="anim-fade4 mt-10 pt-8 border-t border-neutral-700/50 grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {/* Asztalfoglalás */}
+            <div
+              className="relative flex flex-col gap-2 px-4 py-4 overflow-hidden"
+              style={{
+                background: "rgba(249,115,22,0.05)",
+                border: "1px solid rgba(249,115,22,0.20)",
+              }}
             >
-              +36 20 935 9046
-            </a>
+              {/* corner accents */}
+              <div
+                className="absolute top-0 left-0 w-4 h-4"
+                style={{
+                  borderBottom: "1px solid rgba(249,115,22,0.5)",
+                  borderRight: "1px solid rgba(249,115,22,0.5)",
+                  transform: "rotate(180deg)",
+                }}
+              />
+              <div
+                className="absolute bottom-0 right-0 w-4 h-4"
+                style={{
+                  borderTop: "1px solid rgba(249,115,22,0.5)",
+                  borderLeft: "1px solid rgba(249,115,22,0.5)",
+                  transform: "rotate(180deg)",
+                }}
+              />
+
+              <div className="flex items-center gap-2">
+                {/* icon: calendar */}
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#f97316"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                <span className="text-[0.6rem] font-black uppercase tracking-[.22em] text-orange-500">
+                  Asztalfoglalás
+                </span>
+              </div>
+              <p className="text-[0.75rem] text-neutral-400 leading-snug">
+                Foglald le asztalodat előre — garantált hely, garantált élmény.
+              </p>
+              <a
+                href="tel:+36209359046"
+                className="text-[1rem] font-black text-orange-400 hover:text-orange-300 transition-colors tracking-wide mt-0.5"
+              >
+                +36 20 935 9046
+              </a>
+            </div>
+
+            {/* Házhozszállítás */}
+            <div
+              className="relative flex flex-col gap-2 px-4 py-4 overflow-hidden"
+              style={{
+                background: "rgba(249,115,22,0.08)",
+                border: "1px solid rgba(249,115,22,0.35)",
+                boxShadow: "0 0 20px rgba(249,115,22,0.08)",
+              }}
+            >
+              {/* corner accents */}
+              <div
+                className="absolute top-0 left-0 w-4 h-4"
+                style={{
+                  borderBottom: "1px solid rgba(249,115,22,0.7)",
+                  borderRight: "1px solid rgba(249,115,22,0.7)",
+                  transform: "rotate(180deg)",
+                }}
+              />
+              <div
+                className="absolute bottom-0 right-0 w-4 h-4"
+                style={{
+                  borderTop: "1px solid rgba(249,115,22,0.7)",
+                  borderLeft: "1px solid rgba(249,115,22,0.7)",
+                  transform: "rotate(180deg)",
+                }}
+              />
+
+              {/* "ÚJ" badge */}
+              <div
+                className="absolute top-2.5 right-3 text-[0.5rem] font-black uppercase tracking-widest px-1.5 py-0.5"
+                style={{
+                  background: "#f97316",
+                  color: "#0a0a0a",
+                  boxShadow: "0 0 10px rgba(249,115,22,0.6)",
+                }}
+              >
+                ÚJ
+              </div>
+
+              <div className="flex items-center gap-2">
+                {/* icon: scooter / delivery */}
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#f97316"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="5.5" cy="17.5" r="2.5" />
+                  <circle cx="17.5" cy="17.5" r="2.5" />
+                  <path d="M8 17.5h7" />
+                  <path d="M15 6l2 5H8l1-5h6z" />
+                  <path d="M3 9h2l1-3h9l2 9" />
+                </svg>
+                <span className="text-[0.6rem] font-black uppercase tracking-[.22em] text-orange-500">
+                  Házhozszállítás
+                </span>
+              </div>
+              <p className="text-[0.75rem] text-neutral-400 leading-snug">
+                Most már az ételeinket házhoz is visszük! Hívj minket és hozzuk
+                a kedvencedet.
+              </p>
+              <a
+                href="tel:+36209359046"
+                className="text-[1rem] font-black text-orange-400 hover:text-orange-300 transition-colors tracking-wide mt-0.5"
+              >
+                +36 20 935 9046
+              </a>
+            </div>
           </div>
+          {/* end info cards */}
 
           <div className="flex md:hidden justify-center w-full anim-fade0 order-first pt-8">
             <div

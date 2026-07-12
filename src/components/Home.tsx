@@ -5,6 +5,7 @@ import GallerySection from "./Gallery";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import Divider from "./Divider";
+import ReviewsSection from "./Reviewsection";
 
 export default function Home() {
   return (
@@ -49,6 +50,8 @@ export default function Home() {
       <Hero />
       <Divider />
       <About />
+      <Divider />
+      <ReviewsSection />
       <Divider />
       <MenuSection />
       <Divider />
