@@ -3,10 +3,10 @@ import { Reveal } from "./Reveal";
 const HOURS = [
   { day: "Hétfő", dayNum: 1, time: "Zárva" },
   { day: "Kedd", dayNum: 2, time: "Zárva" },
-  { day: "Szerda", dayNum: 3, time: "14:00 – 22:00" },
-  { day: "Csütörtök", dayNum: 4, time: "14:00 – 22:00" },
-  { day: "Péntek", dayNum: 5, time: "14:00 – 01:00" },
-  { day: "Szombat", dayNum: 6, time: "14:00 – 01:00" },
+  { day: "Szerda", dayNum: 3, time: "16:00 – 22:00" },
+  { day: "Csütörtök", dayNum: 4, time: "16:00 – 22:00" },
+  { day: "Péntek", dayNum: 5, time: "16:00 – 01:00" },
+  { day: "Szombat", dayNum: 6, time: "16:00 – 01:00" },
   { day: "Vasárnap", dayNum: 0, time: "12:00 – 20:00" },
 ];
 
